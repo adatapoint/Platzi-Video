@@ -8,7 +8,9 @@ function Playlist(props) { // Componente funcional porque es una función
   console.log(props.data);
   return (
       <div className="Playlist">
-        <Play/>{ // Aquí fue como metimos el ícono de play
+        <Play // Aquí fue como metimos el ícono de play
+            size={100}
+            color="red"/>{ 
             playlist.map((item) => {
                 return <Media {...item} key = {item.id} />
             })
