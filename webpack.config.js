@@ -17,7 +17,7 @@ module.exports = (env) => {
   return {
 
     entry: {
-      "platzi-video": path.resolve(__dirname, 'index.js'),
+      "home": path.resolve(__dirname, 'src/entries/home.js'), // Aquí se define la home de nuestro proyecto
     },
     output: {
       path: path.resolve(__dirname, 'dist'),

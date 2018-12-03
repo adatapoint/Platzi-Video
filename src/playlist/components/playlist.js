@@ -1,17 +1,13 @@
 import React from 'react'
 import Media from './media';
 import './playlist.css'
-import Play from '../../icons/components/play';
 
 function Playlist(props) { // Componente funcional porque es una función
-  const playlist = props.data.categories[0].playlist // Aquí declaro lo que puedo iterar dentro del componente <Media>
   console.log(props.data);
   return (
       <div className="Playlist">
-        <Play // Aquí fue como metimos el ícono de play
-            size={100}
-            color="red"/>{ 
-            playlist.map((item) => {
+        { 
+            props.playlist.map((item) => {
                 return <Media {...item} key = {item.id} />
             })
           }
