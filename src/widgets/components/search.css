@@ -1,0 +1,22 @@
+.Search {
+    max-width: 400px;
+    margin-bottom: 20px;
+}
+
+.Search-input {
+  padding: 20px;
+  font-size: 18px;
+  font-family: Arial;
+  width: 100%;
+  border:none;
+  outline: 0;
+  transition: .2s;
+  box-shadow: 2px 2px 5px rgba(0,0,0,.2);
+  color: #505050;
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+  
+.Search-input:focus {
+  box-shadow: 0010pxrgba(0,0,0,.5);
+}
