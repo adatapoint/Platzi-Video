@@ -27,7 +27,9 @@ class Home extends Component {
             <HandleError>
                 <HomeLayout>
                     <Related/>
-                    <VideoPlayer/>
+                    <VideoPlayer
+                    autoplay//Dejarlo así es lo mismo que ponerlo en true
+                    />
                     <Categories categories={this.props.data.categories} 
                     handleOpenModal={this.handleOpenModal}/>
                     {
