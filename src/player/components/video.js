@@ -17,6 +17,8 @@ export default class Video extends Component { //se le pone a extender de Compon
         const {
             handleLoadedMetadata,
             handleTimeUpdate,
+            handleSeeking,
+            handleSeeked,
         } = this.props
         return (
             <video
@@ -24,7 +26,9 @@ export default class Video extends Component { //se le pone a extender de Compon
             src={this.props.src}
             ref={this.setRef}
             onLoadedMetadata={handleLoadedMetadata}
-            onTimeUpdate={handleTimeUpdate}/>
+            onTimeUpdate={handleTimeUpdate}
+            onSeeking={handleSeeking}
+            onSeeked={handleSeeked}/>
         )
     }
 }

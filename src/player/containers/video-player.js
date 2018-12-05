@@ -7,10 +7,12 @@ import Timer from '../components/timer'
 import Controls from '../components/video-player-controls'
 import { formatedTime } from '../../utilities/utilities'
 import ProgressBar from '../components/progress-bar.js';
+import Spinner from '../components/spinner'
 
 export default class VideoPlayer extends Component {
     state = {
         playing: false,
+        loading: false,
         duration: '',
         time: '',
         durationFloat: 0,
@@ -49,6 +51,16 @@ export default class VideoPlayer extends Component {
         this.video.currentTime = event.target.value // Con esto se mueve el video según la posición que yo ponga en el progress bar
     }
     // Aquí es donde se debe formatear eso
+    handleSeeked = event => {
+        this.setState({
+            loading: false
+        })
+    }
+    handleSeeking = event => {
+        this.setState({
+            loading: true
+        })
+    }
     render(){
         return (
             <div className="Video">
@@ -68,13 +80,16 @@ export default class VideoPlayer extends Component {
                             handleProgressChange={this.handleProgressChange}
                         />
                     </Controls>
-                    
+                    <Spinner
+                        active={this.state.loading}/>                    
                         <Video
                         handleLoadedMetadata = {this.handleLoadedMetadata}
                         handleTimeUpdate={this.handleTimeUpdate}
                         autoplay={this.props.autoplay}
                         playing={this.state.playing} // Ojo -> Se le manda el estado, no las propiedades
-                        src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"/>
+                        src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
+                        handleSeeking={this.handleSeeking}
+                        handleSeeked={this.handleSeeked}/>
                 </VideoPlayerLayout>
             </div>
         )
