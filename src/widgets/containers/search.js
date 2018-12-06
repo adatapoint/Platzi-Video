@@ -3,7 +3,7 @@ import Search from '../components/search';
 
 class SearchContainer extends Component {
     state = {
-        value: "Hola perrra!!!" // Valor por defecto, pero es editable
+        value: "Busca artistas, canciones y amigos" // Valor por defecto, pero es editable
     }
     handleSubmit = event => {
         // Para que la página no recargue hay que decírselo
