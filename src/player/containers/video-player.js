@@ -8,10 +8,14 @@ import Controls from '../components/video-player-controls'
 import { formatedTime } from '../../utilities/utilities'
 import ProgressBar from '../components/progress-bar.js';
 import Spinner from '../components/spinner'
+import Volume from '../components/volume'
+import FullScreen from '../components/full-screen'
 
 export default class VideoPlayer extends Component {
     state = {
         playing: false,
+        muted: false,
+        volume: 1,
         loading: false,
         duration: '',
         time: '',
@@ -61,11 +65,43 @@ export default class VideoPlayer extends Component {
             loading: true
         })
     }
+    handleVolumeChange = event => {
+        this.video.volume = event.target.value //Ese .volume es nativo de HTML5
+        this.setState({
+            volume: this.video.volume
+        })
+    }
+    handleVolumeToggle = event => {
+        if(this.state.muted) {
+            this.setState({
+                muted: false,                
+            })
+        }  else { this.setState({
+                muted: true
+            })
+        }       
+    }
+    handleFullScreenClick = event => {
+        if (!document.webkitIsFullScreen) {
+            console.log("true")
+          // mando a full screen
+          this.player.webkitRequestFullscreen()
+        } else {
+          document.webkitExitFullscreen();
+          // salgo del full screen
+        }
+    }
+    setRef = element => { // Esto es para poder tener ese elemento en otros lugares, ejemplo, en el handleFullScreen.
+        this.player = element
+    }
     render(){
         return (
             <div className="Video">
-                <VideoPlayerLayout>
-                    <Title title="Este es un video bueno"/>
+                <VideoPlayerLayout
+                    setRef={
+                        this.setRef//Así se pone la referencia, pero hay que ponerla en el js del elemento
+                    }>
+                    <Title title={this.props.title}/>
                     <Controls>
                         <PlayPause 
                         playing={this.state.playing}
@@ -79,15 +115,21 @@ export default class VideoPlayer extends Component {
                             max={this.state.durationFloat}
                             handleProgressChange={this.handleProgressChange}
                         />
+                        <Volume
+                            handleVolumeChange={this.handleVolumeChange}
+                            handleVolumeToggle={this.handleVolumeToggle}
+                            volume={this.state.volume}/>
+                        <FullScreen 
+                        handleFullScreenClick={this.handleFullScreenClick}/>
                     </Controls>
                     <Spinner
                         active={this.state.loading}/>                    
-                        <Video
+                    <Video
                         handleLoadedMetadata = {this.handleLoadedMetadata}
                         handleTimeUpdate={this.handleTimeUpdate}
                         autoplay={this.props.autoplay}
                         playing={this.state.playing} // Ojo -> Se le manda el estado, no las propiedades
-                        src="http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4"
+                        src={this.props.src}
                         handleSeeking={this.handleSeeking}
                         handleSeeked={this.handleSeeked}/>
                 </VideoPlayerLayout>

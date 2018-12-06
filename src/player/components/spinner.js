@@ -5,11 +5,10 @@ function Spinner(props){
     if (!props.active) {
         return null
     } else {
-        return(
+        return (
             <div className="Spinner">
                 <span>Cargando...</span>
             </div>
-
         )
     }
 }

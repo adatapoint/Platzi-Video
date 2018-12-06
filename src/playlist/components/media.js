@@ -12,16 +12,17 @@ class Media extends PureComponent {
   //     author: props.author
   //   }
   // }
-  //handleClick = (event) => { // Los arrow functions heredan el contexto de su padre, por lo que no es necesario el bind
+  handleClick = (event) => { // Los arrow functions heredan el contexto de su padre, por lo que no es necesario el bind
+    this.props.openModal(this.props)
     // console.log(this.state.image)
     // this.setState({ // Así se cambia el estado de un componente.
     //   author: 'Ricargo Célis',
     // })
-  // }
+  }
   render() {
 
     return (
-      <div className="Media" onClick={this.props.handleClick}>
+      <div className="Media" onClick={this.handleClick}>
         <div className="Media-cover">
           <img
             src={this.props.cover}
