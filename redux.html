@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Redux</title>
+    <link rel="stylesheet" href="dist/css/home.cbf7f5cc439e7d8e72c4.css">
+    <style>
+        body {
+            margin: 0;
+            background: lightgray;
+            font-family: Arial;
+            padding-top: 55px;
+        }
+        form {
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            font-size: 18px;
+            box-sizing: border-box;
+        }
+            p {
+            margin: 10px;
+            background: black;
+            color: white;
+            padding: 5px;
+        }
+    </style>
+  </head>
+  <body>
+      <form id="form">
+          <input type="text" name="title" placeholder="Nombre de la canción">
+      </form>
+        <div id="playlist"></div>  
+    <!-- <div id="home-container"></div>
+    <div id="modal-container"></div> -->
+    <!-- <script src="dist/js/home.js"></script> Esto se cambia para producción o desarrollo (Desarrollo: http://localhost:9000/js/home.js - Producción: dist/js/home.js -->
+    <script src="http://localhost:9000/js/redux.js"></script>
+  </body>
+</html>
