@@ -11,7 +11,7 @@ function Categories(props){
             <Search />
             {
                 props.search.map((item) => {
-                    return <Media {... item} key={item.id}/>
+                    return <Media openModal={props.handleOpenModal} {... item.toJS()} key={item.get('id')}/>
                 })
             }
             {
@@ -19,8 +19,8 @@ function Categories(props){
                     return(
 
                         <Category  
-                        {...item}
-                        key={item.id}
+                        {...item.toJS()}
+                        key={item.get('id')}
                         handleOpenModal={props.handleOpenModal}/>
                     ) 
                 })

@@ -10,8 +10,9 @@ import ProgressBar from '../components/progress-bar.js';
 import Spinner from '../components/spinner'
 import Volume from '../components/volume'
 import FullScreen from '../components/full-screen'
+import { connect } from 'react-redux'
 
-export default class VideoPlayer extends Component {
+class VideoPlayer extends Component {
     state = {
         playing: false,
         muted: false,
@@ -101,7 +102,7 @@ export default class VideoPlayer extends Component {
                     setRef={
                         this.setRef//Así se pone la referencia, pero hay que ponerla en el js del elemento
                     }>
-                    <Title title={this.props.title}/>
+                    <Title title={this.props.media.get('title')}/>
                     <Controls>
                         <PlayPause 
                         playing={this.state.playing}
@@ -129,11 +130,20 @@ export default class VideoPlayer extends Component {
                         handleTimeUpdate={this.handleTimeUpdate}
                         autoplay={this.props.autoplay}
                         playing={this.state.playing} // Ojo -> Se le manda el estado, no las propiedades
-                        src={this.props.src}
+                        src={this.props.media.get('src')}
                         handleSeeking={this.handleSeeking}
                         handleSeeked={this.handleSeeked}/>
                 </VideoPlayerLayout>
             </div>
         )
     }
+
 }
+
+function mapStateToProps(state, props){
+    return {
+        media: state.get('data').get('entities').get('media').get(props.id)
+    }
+}
+
+export default connect(mapStateToProps)(VideoPlayer)

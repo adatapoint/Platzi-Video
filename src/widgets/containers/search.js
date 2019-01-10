@@ -9,7 +9,7 @@ class SearchContainer extends Component {
     handleSubmit = event => {
         // Para que la página no recargue hay que decírselo
         event.preventDefault();
-        console.log(this.input.value, 'submit') // Aquí se puede mandar el POST con todos los datos de un formulario
+        console.log(this.input.value.toLowerCase(), 'submit') // Aquí se puede mandar el POST con todos los datos de un formulario
         this.props.dispatch({ // Esto fue gracias a Connect, dado que puedo usar this.props.dispatch
             type: 'SEARCH_VIDEO',
             payload: {

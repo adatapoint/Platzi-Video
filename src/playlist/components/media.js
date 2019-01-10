@@ -13,7 +13,7 @@ class Media extends PureComponent {
   //   }
   // }
   handleClick = (event) => { // Los arrow functions heredan el contexto de su padre, por lo que no es necesario el bind
-    this.props.openModal(this.props)
+    this.props.openModal(this.props.id) //Simplemente le enviamos una referencia del archivo
     // console.log(this.state.image)
     // this.setState({ // Así se cambia el estado de un componente.
     //   author: 'Ricargo Célis',
