@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Search from '../components/search';
+import { connect } from 'react-redux'
 
 class SearchContainer extends Component {
     state = {
@@ -9,6 +10,12 @@ class SearchContainer extends Component {
         // Para que la página no recargue hay que decírselo
         event.preventDefault();
         console.log(this.input.value, 'submit') // Aquí se puede mandar el POST con todos los datos de un formulario
+        this.props.dispatch({ // Esto fue gracias a Connect, dado que puedo usar this.props.dispatch
+            type: 'SEARCH_VIDEO',
+            payload: {
+                query: this.input.value,
+            }
+        })
     }
 
     setInputRef = element => { //Funcion que recibe el elemento, que llega del input.
@@ -33,4 +40,4 @@ class SearchContainer extends Component {
     }
 }
 
-export default SearchContainer;
+export default connect()(SearchContainer); // Esto es para que tenga acceso al dispatch
